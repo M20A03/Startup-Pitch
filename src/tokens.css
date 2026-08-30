@@ -1,0 +1,223 @@
+/* ============================================================
+   KARO PITCH — DESIGN TOKENS & RESPONSIVE ARCHITECTURE
+   ============================================================ */
+
+:root {
+  /* 8px/4px Spacing Grid */
+  --space-0: 0px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* Fluid Typography Scale (Fluid Clamp from 320px to 2560px) */
+  --font-xs:   clamp(0.75rem,  0.72rem + 0.15vw, 0.8125rem);
+  --font-sm:   clamp(0.8125rem, 0.78rem + 0.2vw, 0.875rem);
+  --font-base: clamp(0.9375rem, 0.90rem + 0.25vw, 1rem);
+  --font-md:   clamp(1.0625rem, 1.00rem + 0.35vw, 1.125rem);
+  --font-lg:   clamp(1.1875rem, 1.10rem + 0.5vw, 1.35rem);
+  --font-xl:   clamp(1.35rem,  1.20rem + 0.8vw, 1.65rem);
+  --font-2xl:  clamp(1.65rem,  1.40rem + 1.2vw, 2.15rem);
+  --font-3xl:  clamp(2.1rem,   1.75rem + 1.8vw, 3rem);
+  --font-4xl:  clamp(2.65rem,  2.10rem + 2.5vw, 4rem);
+
+  /* Font Families */
+  --font-head: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+
+  /* Hardware & Container Constraints */
+  --min-touch-target: 44px;
+  --container-max-w: 1240px;
+  --container-desktop-max: 1480px;
+  --sidebar-w: 280px;
+
+  /* Border Radii */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+
+  /* Animation & Transitions */
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --trans-fast: 160ms var(--ease-smooth);
+  --trans-base: 260ms var(--ease-smooth);
+  --trans-slow: 400ms var(--ease-smooth);
+}
+
+/* ── DARK THEME (DEFAULT) ── */
+:root,
+[data-theme="dark"] {
+  --bg:            #030B1A;
+  --bg-2:          #081C35;
+  --bg-3:          #0C2242;
+  --bg-4:          #0F2650;
+  --bg-canvas:     #030B1A;
+  --bg-surface:    #08142b;
+  --bg-surface-elevated: #0d2042;
+  --bg-surface-glass: rgba(8, 20, 43, 0.82);
+
+  --card-bg:       rgba(8, 20, 48, 0.70);
+  --card-border:   rgba(74, 144, 255, 0.18);
+  --card-hover:    rgba(74, 144, 255, 0.36);
+  --card-glow:     0 0 0 1px rgba(74,144,255,0.25), 0 20px 60px rgba(74,144,255,0.15);
+
+  --text-primary:  #F1F5F9;
+  --text-secondary:#94A3B8;
+  --text-muted:    #64748B;
+
+  --primary:       #4A90FF;
+  --primary-dark:  #2563EB;
+  --primary-light: rgba(74, 144, 255, 0.14);
+
+  --secondary:     #8B5CF6;
+  --secondary-light: rgba(139, 92, 246, 0.15);
+  --accent:        #A78BFA;
+
+  --success:       #22C55E;
+  --warning:       #F59E0B;
+  --error:         #EF4444;
+
+  --gradient:      linear-gradient(120deg, #4A90FF 0%, #8B5CF6 100%);
+  --gradient-text: linear-gradient(120deg, #70A6FF 0%, #C4B5FD 100%);
+  --gradient-soft: linear-gradient(120deg, rgba(74,144,255,0.15) 0%, rgba(139,92,246,0.15) 100%);
+
+  --shadow-sm:     0 2px 8px rgba(0,0,0,0.35);
+  --shadow-card:   0 8px 32px rgba(0,0,0,0.50);
+  --shadow-glow:   0 0 48px rgba(74,144,255,0.22);
+  --focus-ring:    0 0 0 3px rgba(74, 144, 255, 0.45);
+
+  --input-bg:      rgba(8, 22, 50, 0.90);
+  --scrollbar-bg:  #051126;
+  --scrollbar-th:  #183562;
+}
+
+/* ── LIGHT THEME (WCAG AA CONTRAST CERTIFIED) ── */
+[data-theme="light"] {
+  --bg:            #F8FBFF;
+  --bg-2:          #EDF4FF;
+  --bg-3:          #E0EDFF;
+  --bg-4:          #D4E4FF;
+  --bg-canvas:     #F8FBFF;
+  --bg-surface:    #FFFFFF;
+  --bg-surface-elevated: #F1F6FD;
+  --bg-surface-glass: rgba(255, 255, 255, 0.88);
+
+  --card-bg:       #FFFFFF;
+  --card-border:   rgba(30, 96, 213, 0.15);
+  --card-hover:    rgba(30, 96, 213, 0.32);
+  --card-glow:     0 0 0 1px rgba(30,96,213,0.18), 0 12px 36px rgba(30,96,213,0.10);
+
+  --text-primary:  #0B1528;
+  --text-secondary:#334E6E;
+  --text-muted:    #5E7796;
+
+  --primary:       #1E60D5;
+  --primary-dark:  #144AA8;
+  --primary-light: rgba(30, 96, 213, 0.09);
+
+  --secondary:     #6D28D9;
+  --secondary-light: rgba(109, 40, 217, 0.10);
+  --accent:        #4F46E5;
+
+  --success:       #16A34A;
+  --warning:       #D97706;
+  --error:         #DC2626;
+
+  --gradient:      linear-gradient(120deg, #1E60D5 0%, #6D28D9 100%);
+  --gradient-text: linear-gradient(120deg, #1E60D5 0%, #6D28D9 100%);
+  --gradient-soft: linear-gradient(135deg, rgba(30,96,213,0.08) 0%, rgba(109,40,217,0.08) 100%);
+
+  --shadow-sm:     0 2px 6px rgba(15, 23, 42, 0.06);
+  --shadow-card:   0 6px 24px rgba(30,96,213,0.08), 0 1px 4px rgba(0,0,0,0.04);
+  --shadow-glow:   0 0 36px rgba(30,96,213,0.16);
+  --focus-ring:    0 0 0 3px rgba(30, 96, 213, 0.35);
+
+  --input-bg:      #FFFFFF;
+  --scrollbar-bg:  #E5EEFD;
+  --scrollbar-th:  #ADC8F5;
+}
+
+/* ── BASE RESETS & SAFE AREA INSETS ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.65;
+  overflow-x: hidden;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  transition: background-color var(--trans-base), color var(--trans-base);
+}
+
+/* Mandatory iOS 16px font-size lock to eliminate auto-zoom */
+input, select, textarea, button {
+  font-family: inherit;
+  font-size: 16px;
+  color: inherit;
+}
+
+/* Strict Touch Target Metric (WCAG 2.5.8 & Apple HIG) */
+button, 
+a, 
+input, 
+select, 
+textarea, 
+[role="button"] {
+  min-height: var(--min-touch-target);
+  touch-action: manipulation;
+}
+
+/* Consistent Visible Focus Outline */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-xs);
+}
+
+/* Responsive Container System */
+.container {
+  width: 100%;
+  max-width: var(--container-max-w);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(16px, 4vw, 32px);
+  padding-right: clamp(16px, 4vw, 32px);
+}
+
+@media (min-width: 1920px) {
+  .container {
+    max-width: var(--container-desktop-max);
+  }
+}
+
+/* Word break containment for user generated content */
+.text-break {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}

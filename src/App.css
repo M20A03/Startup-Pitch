@@ -1,0 +1,55 @@
+/* App-level styles handled by index.css */
+
+/* ── SC 2.4.1 Level A — Skip to main content link ── */
+/* Visually hidden until focused; revealed on focus for sighted keyboard users */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 9999;
+  padding: 12px 24px;
+  background: var(--primary);
+  color: #fff;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: 0 0 10px 10px;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 0;
+  /* SC 2.4.7 Level AA — Focus Visible */
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+/* SC 2.4.7 Level AA — Focus Visible: global keyboard focus ring */
+/* Uses :focus-visible so mouse clicks don't show the ring */
+*:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+/* Remove default outline only when :focus-visible is supported */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* SC 2.3.3 / 2.2.2 — Reduced Motion: pause all animations for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}

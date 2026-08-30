@@ -1,0 +1,210 @@
+/* Pitch Application Modal */
+.kp-pitch-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(20px + env(safe-area-inset-top, 0px)) 16px calc(20px + env(safe-area-inset-bottom, 0px));
+  overflow-y: auto;
+}
+
+.kp-pitch-modal {
+  width: 100%;
+  max-width: 620px;
+  background: var(--bg-surface, #0f172a);
+  border: 1px solid var(--border-subtle, rgba(74, 144, 255, 0.2));
+  border-radius: var(--radius-lg, 16px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+  padding: clamp(20px, 4vw, 32px);
+  color: var(--text-primary);
+  margin: auto;
+}
+
+[data-theme="light"] .kp-pitch-modal {
+  background: #ffffff;
+  border-color: rgba(30, 96, 213, 0.2);
+  box-shadow: 0 20px 50px rgba(30, 96, 213, 0.18);
+}
+
+.kp-pitch-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.kp-pitch-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--primary, #4a90ff);
+  background: var(--primary-light, rgba(74, 144, 255, 0.12));
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 6px;
+}
+
+.kp-pitch-title {
+  font-size: clamp(20px, 3vw, 26px);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+.kp-pitch-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--trans-fast, 150ms ease), background var(--trans-fast, 150ms ease);
+}
+
+.kp-pitch-close-btn:hover {
+  color: var(--text-primary);
+  background: var(--primary-light, rgba(74, 144, 255, 0.1));
+}
+
+.kp-pitch-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.kp-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .kp-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.kp-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.kp-form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.kp-form-group input,
+.kp-form-group select,
+.kp-form-group textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: var(--radius-sm, 8px);
+  background: var(--input-bg, rgba(8, 22, 50, 0.8));
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.12));
+  color: var(--text-primary);
+  font-size: 16px !important; /* iOS Zoom Fix */
+  transition: border-color var(--trans-fast, 150ms ease), box-shadow var(--trans-fast, 150ms ease);
+}
+
+[data-theme="light"] .kp-form-group input,
+[data-theme="light"] .kp-form-group select,
+[data-theme="light"] .kp-form-group textarea {
+  background: #f8fafc;
+  border-color: rgba(30, 96, 213, 0.2);
+}
+
+.kp-form-group input:focus,
+.kp-form-group select:focus,
+.kp-form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary, #4a90ff);
+  box-shadow: var(--focus-ring, 0 0 0 3px rgba(74, 144, 255, 0.35));
+}
+
+.kp-form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.kp-pitch-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+  gap: 16px;
+}
+
+@media (max-width: 500px) {
+  .kp-pitch-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.kp-draft-status {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.kp-draft-status span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--success, #22c55e);
+}
+
+.kp-form-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.kp-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.kp-pitch-success-view {
+  text-align: center;
+  padding: 32px 16px;
+}
+
+.kp-pitch-success-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(34, 197, 94, 0.15);
+  color: var(--success, #22c55e);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.kp-pitch-success-view h3 {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.kp-pitch-success-view p {
+  color: var(--text-secondary);
+  font-size: 15px;
+  margin-bottom: 24px;
+}

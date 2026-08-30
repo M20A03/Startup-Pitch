@@ -1,0 +1,26 @@
+.trust-bar {
+  padding: 22px 0;
+  border-top: 1px solid var(--card-border);
+  border-bottom: 1px solid var(--card-border);
+  overflow: hidden;
+  background: var(--bg-2);
+}
+.trust-inner { display: flex; align-items: center; gap: 32px; }
+.trust-label {
+  color: var(--text-muted); font-size: 11.5px; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase; white-space: nowrap;
+  flex-shrink: 0; padding: 0 24px 0 28px;
+}
+.trust-track-wrap { flex: 1; overflow: hidden; }
+.trust-track {
+  display: flex; gap: 60px; width: max-content;
+  animation: marqueeScroll 18s linear infinite;
+}
+.trust-track:hover { animation-play-state: paused; }
+.trust-logo {
+  color: var(--text-secondary); font-family: var(--font-head);
+  font-size: 14px; font-weight: 700;
+  white-space: nowrap; flex-shrink: 0;
+  opacity: 0.55; transition: opacity 0.25s ease;
+}
+.trust-logo:hover { opacity: 1; color: var(--primary); }

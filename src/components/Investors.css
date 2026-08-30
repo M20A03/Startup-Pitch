@@ -1,0 +1,124 @@
+.investors {
+  padding: clamp(60px, 8vw, 120px) 0;
+  background: linear-gradient(180deg, var(--dark-3, #0C2242) 0%, var(--dark-2, #081C35) 100%);
+  position: relative;
+}
+
+.investors-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 2.5vw, 22px);
+  margin-bottom: 36px;
+}
+
+@media (min-width: 1920px) {
+  .investors-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .investors-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .investors-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.investor-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md, 16px);
+  padding: clamp(24px, 3vw, 32px) 20px;
+  text-align: center;
+  transition: transform var(--trans-base), border-color var(--trans-base), box-shadow var(--trans-base);
+  cursor: default;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .investor-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--card-hover);
+    box-shadow: var(--card-glow);
+  }
+}
+
+.investor-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-head);
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 auto 16px;
+}
+
+.investor-card h4 {
+  font-family: var(--font-head);
+  font-size: clamp(16px, 1.3vw, 18px);
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--text-primary);
+}
+
+.inv-type {
+  color: var(--text-muted);
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.investor-tags {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.investor-tags span {
+  background: var(--primary-light);
+  border: 1px solid rgba(74, 144, 255, 0.22);
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 100px;
+}
+
+.investors-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.inv-note {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--dark-2, #081C35);
+  border: 1px solid var(--card-border);
+  padding: 14px 22px;
+  border-radius: var(--radius-sm, 8px);
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.inv-note > span {
+  font-size: 18px;
+}
+
+@media (max-width: 600px) {
+  .investors-footer {
+    flex-direction: column;
+    text-align: center;
+  }
+}

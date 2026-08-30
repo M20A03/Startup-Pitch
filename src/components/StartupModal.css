@@ -1,0 +1,194 @@
+/* Startup Modal Styles */
+.kp-startup-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(20px + env(safe-area-inset-top, 0px)) 16px calc(20px + env(safe-area-inset-bottom, 0px));
+}
+
+.kp-startup-modal {
+  width: 100%;
+  max-width: 580px;
+  background: var(--bg-surface, #0f172a);
+  border: 1px solid var(--border-subtle, rgba(74, 144, 255, 0.2));
+  border-radius: var(--radius-lg, 16px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+  padding: clamp(20px, 4vw, 32px);
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+[data-theme="light"] .kp-startup-modal {
+  background: #ffffff;
+  border-color: rgba(30, 96, 213, 0.2);
+  box-shadow: 0 20px 50px rgba(30, 96, 213, 0.18);
+}
+
+.kp-startup-modal-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  position: relative;
+}
+
+.kp-startup-avatar-lg {
+  font-size: 36px;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-md, 12px);
+  background: var(--bg-surface-elevated, rgba(74, 144, 255, 0.1));
+  border: 1px solid var(--border-subtle, rgba(74, 144, 255, 0.2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.kp-startup-modal-title-area {
+  flex: 1;
+}
+
+.kp-startup-tag-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.kp-startup-tag {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--primary, #4a90ff);
+  background: var(--primary-light, rgba(74, 144, 255, 0.12));
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.kp-startup-stage-pill {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--secondary, #8b5cf6);
+  background: var(--secondary-light, rgba(139, 92, 246, 0.12));
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.kp-startup-title {
+  font-size: clamp(20px, 3vw, 24px);
+  font-weight: 800;
+  margin: 0;
+}
+
+.kp-startup-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--trans-fast, 150ms ease);
+}
+
+.kp-startup-close-btn:hover {
+  color: var(--text-primary);
+}
+
+.kp-startup-location-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.meta-sep {
+  opacity: 0.4;
+}
+
+.verified-icon {
+  color: var(--success, #22c55e);
+}
+
+.kp-startup-desc-block {
+  background: var(--bg-surface-elevated, rgba(74, 144, 255, 0.05));
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.06));
+  padding: 16px;
+  border-radius: var(--radius-sm, 8px);
+}
+
+.kp-startup-desc-block h4 {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.kp-startup-desc-block p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.kp-startup-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 500px) {
+  .kp-startup-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.metric-box {
+  background: var(--bg-surface-elevated, rgba(74, 144, 255, 0.05));
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.06));
+  padding: 12px;
+  border-radius: var(--radius-sm, 8px);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metric-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.metric-val {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.kp-startup-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+@media (max-width: 500px) {
+  .kp-startup-modal-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
