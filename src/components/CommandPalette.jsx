@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Sparkles, Send, Sun, Moon, Users, Layers, X, ArrowRight } from 'lucide-react';
+import { Search, Sparkles, Send, Sun, Moon, Users, Layers, X, ArrowRight, CreditCard } from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
 import './CommandPalette.css';
 
@@ -49,6 +49,34 @@ export function CommandPalette({ isOpen, onClose, onOpenPitch }) {
       action: () => {
         onClose();
         window.location.hash = '#how-it-works';
+      },
+    },
+    {
+      id: 'fintech-suite',
+      title: 'Akoin Fintech Platform',
+      subtitle: 'Digital payments, working capital & risk analytics',
+      icon: <CreditCard size={16} />,
+      action: () => {
+        onClose();
+        const url = new URL(window.location.href);
+        url.searchParams.set('view', 'fintech');
+        window.history.pushState(null, '', url.toString());
+        window.dispatchEvent(new Event('kp:popstate'));
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      },
+    },
+    {
+      id: 'pitch-suite',
+      title: 'Karo Pitch Platform',
+      subtitle: 'Bharat startup showcase & investor matchmaking',
+      icon: <Layers size={16} />,
+      action: () => {
+        onClose();
+        const url = new URL(window.location.href);
+        url.searchParams.set('view', 'pitch');
+        window.history.pushState(null, '', url.toString());
+        window.dispatchEvent(new Event('kp:popstate'));
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       },
     },
     {

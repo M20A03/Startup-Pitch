@@ -8,8 +8,21 @@
 .social-link:hover { color: var(--primary); }
 .footer-col h4 { font-family: var(--font-head); font-size: 12px; font-weight: 700; color: var(--text-muted); margin-bottom: 20px; letter-spacing: 0.5px; text-transform: uppercase; }
 .footer-col ul { display: flex; flex-direction: column; gap: 12px; }
-.footer-col ul li a { color: var(--text-secondary); font-size: 14px; transition: var(--trans); font-weight: 500; }
-.footer-col ul li a:hover { color: var(--primary); }
+.footer-col ul li a,
+.footer-btn-link {
+  color: var(--text-secondary);
+  font-size: 14px;
+  transition: var(--trans-fast);
+  font-weight: 500;
+  background: transparent;
+  border: none;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  min-height: auto;
+}
+.footer-col ul li a:hover,
+.footer-btn-link:hover { color: var(--primary); }
 .footer-bottom {
   border-top: 1px solid var(--card-border); padding-top: 28px;
   display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;

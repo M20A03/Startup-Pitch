@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Sun, Moon, Search } from 'lucide-react';
+import { Menu, X, Sun, Moon, Search, Layers, CreditCard } from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
 import './Navbar.css';
 
-const links = [
+const pitchLinks = [
   { label: 'About',        href: '#about',         id: 'about' },
   { label: 'How It Works', href: '#how-it-works',   id: 'how-it-works' },
   { label: 'Apply',        href: '#who-can-apply',  id: 'who-can-apply' },
@@ -12,11 +12,19 @@ const links = [
   { label: 'Startups',     href: '#startups',       id: 'startups' },
 ];
 
-export default function Navbar({ onOpenPitch, onOpenSearch }) {
+const fintechLinks = [
+  { label: 'Architecture', href: '#fintech-platform',    id: 'fintech-platform' },
+  { label: 'Calculator',   href: '#capital-calculator',  id: 'capital-calculator' },
+  { label: 'Pitch Platform', href: '#pitch-platform',    id: 'pitch-platform' },
+];
+
+export default function Navbar({ currentView, onToggleView, onOpenPitch, onOpenSearch }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const { resolvedTheme, setTheme } = useTheme();
+
+  const links = currentView === 'fintech' ? fintechLinks : pitchLinks;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -24,7 +32,6 @@ export default function Navbar({ onOpenPitch, onOpenSearch }) {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Track active section for highlight
   useEffect(() => {
     const sectionIds = links.map((l) => l.id);
     const observers = [];
@@ -43,9 +50,8 @@ export default function Navbar({ onOpenPitch, onOpenSearch }) {
     });
 
     return () => observers.forEach((o) => o.disconnect());
-  }, []);
+  }, [links]);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = 'hidden';
@@ -74,10 +80,32 @@ export default function Navbar({ onOpenPitch, onOpenSearch }) {
         transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
       >
         <div className="nav-container">
-          <a href="#hero" className="nav-logo" aria-label="Karo Pitch Homepage">
-            <span className="logo-karo">karo</span>
-            <span className="logo-pitch">pitch</span>
-          </a>
+          <div className="nav-brand-group">
+            <a href="#hero" className="nav-logo" aria-label="Karo Pitch Homepage">
+              <span className="logo-karo">karo</span>
+              <span className="logo-pitch">pitch</span>
+            </a>
+
+            {/* Platform Suite Switcher */}
+            <div className="nav-suite-switcher" role="tablist" aria-label="Switch platform view">
+              <button
+                className={`suite-tab ${currentView === 'pitch' ? 'active' : ''}`}
+                onClick={() => onToggleView('pitch')}
+                role="tab"
+                aria-selected={currentView === 'pitch'}
+              >
+                <Layers size={13} /> Pitch
+              </button>
+              <button
+                className={`suite-tab ${currentView === 'fintech' ? 'active' : ''}`}
+                onClick={() => onToggleView('fintech')}
+                role="tab"
+                aria-selected={currentView === 'fintech'}
+              >
+                <CreditCard size={13} /> Fintech
+              </button>
+            </div>
+          </div>
 
           <ul className="nav-links">
             {links.map((l) => (
@@ -85,6 +113,11 @@ export default function Navbar({ onOpenPitch, onOpenSearch }) {
                 <a
                   href={l.href}
                   className={activeSection === l.id ? 'active' : ''}
+                  onClick={() => {
+                    if (l.id === 'pitch-platform') {
+                      onToggleView('pitch');
+                    }
+                  }}
                 >
                   {l.label}
                 </a>
@@ -93,7 +126,7 @@ export default function Navbar({ onOpenPitch, onOpenSearch }) {
           </ul>
 
           <div className="nav-right">
-            {/* Quick Command Launcher Button */}
+            {/* Quick Search Launcher */}
             <button
               className="nav-search-btn"
               onClick={onOpenSearch}
@@ -136,7 +169,7 @@ export default function Navbar({ onOpenPitch, onOpenSearch }) {
               </AnimatePresence>
             </button>
 
-            {/* Primary Action */}
+            {/* Primary Action Button */}
             <button
               onClick={onOpenPitch}
               className="btn btn-primary nav-cta"
@@ -172,7 +205,7 @@ export default function Navbar({ onOpenPitch, onOpenSearch }) {
         </div>
       </motion.nav>
 
-      {/* Mobile Fullscreen Drawer Navigation */}
+      {/* Mobile Drawer */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -204,6 +237,28 @@ export default function Navbar({ onOpenPitch, onOpenSearch }) {
                 </button>
               </div>
 
+              {/* Mobile Suite Switcher */}
+              <div className="mobile-suite-toggle">
+                <button
+                  className={`mobile-suite-btn ${currentView === 'pitch' ? 'active' : ''}`}
+                  onClick={() => {
+                    onToggleView('pitch');
+                    setMenuOpen(false);
+                  }}
+                >
+                  Karo Pitch Platform
+                </button>
+                <button
+                  className={`mobile-suite-btn ${currentView === 'fintech' ? 'active' : ''}`}
+                  onClick={() => {
+                    onToggleView('fintech');
+                    setMenuOpen(false);
+                  }}
+                >
+                  Akoin Fintech Rails
+                </button>
+              </div>
+
               <ul>
                 {links.map((l, i) => (
                   <motion.li
@@ -215,7 +270,12 @@ export default function Navbar({ onOpenPitch, onOpenSearch }) {
                     <a
                       href={l.href}
                       className={activeSection === l.id ? 'active' : ''}
-                      onClick={() => setMenuOpen(false)}
+                      onClick={() => {
+                        setMenuOpen(false);
+                        if (l.id === 'pitch-platform') {
+                          onToggleView('pitch');
+                        }
+                      }}
                     >
                       {l.label}
                     </a>
