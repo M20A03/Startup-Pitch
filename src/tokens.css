@@ -76,13 +76,13 @@
   --text-secondary:#94A3B8;
   --text-muted:    #64748B;
 
-  --primary:       #4A90FF;
-  --primary-dark:  #2563EB;
-  --primary-light: rgba(74, 144, 255, 0.14);
+  --primary:       #3B82F6;
+  --primary-dark:  #1D4ED8;
+  --primary-light: rgba(59, 130, 246, 0.14);
 
-  --secondary:     #8B5CF6;
-  --secondary-light: rgba(139, 92, 246, 0.15);
-  --accent:        #A78BFA;
+  --secondary:     #6366F1;
+  --secondary-light: rgba(99, 102, 241, 0.15);
+  --accent:        #818CF8;
 
   --success:       #22C55E;
   --warning:       #F59E0B;
