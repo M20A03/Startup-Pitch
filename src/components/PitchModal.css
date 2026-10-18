@@ -208,3 +208,44 @@
   font-size: 15px;
   margin-bottom: 24px;
 }
+
+.kp-pitch-demo-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: rgba(74, 144, 255, 0.08);
+  border: 1px dashed rgba(74, 144, 255, 0.3);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm, 8px);
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.kp-demo-preset-btn {
+  background: var(--primary, #4a90ff);
+  color: #ffffff;
+  border: none;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 150ms ease;
+}
+
+.kp-demo-preset-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(74, 144, 255, 0.35);
+}
+
+@media (max-width: 480px) {
+  .kp-pitch-demo-banner {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+}
+

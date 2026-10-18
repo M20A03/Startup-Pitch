@@ -138,6 +138,36 @@ export function PitchModal({ isOpen, onClose }) {
                 </button>
               </div>
             ) : (
+              <>
+                <div className="kp-pitch-demo-banner">
+                <span className="text-xs">Testing the pitch workflow?</span>
+                <button
+                  type="button"
+                  className="kp-demo-preset-btn"
+                  onClick={() => {
+                    const preset = {
+                      founderName: 'Aditya Deshmukh',
+                      email: 'aditya@kisanai.in',
+                      startupName: 'KisanAI Bharat',
+                      sector: 'AgriTech',
+                      stage: 'Pre-Seed',
+                      city: 'Nashik, Maharashtra',
+                      pitchDeckUrl: 'https://docsend.com/view/kisanai-bharat-deck',
+                      askAmount: '₹75 Lakhs',
+                      summary: 'AI-powered multilingual WhatsApp copilot for smallholder cotton and sugarcane farmers diagnosing crop pests and providing MSP market intelligence.',
+                    };
+                    setFormData(preset);
+                    try {
+                      localStorage.setItem('kp-pitch-draft', JSON.stringify(preset));
+                      setIsSavedLocally(true);
+                    } catch {}
+                    dispatchAppToast('info', 'Loaded KisanAI Bharat sample pitch draft!');
+                  }}
+                >
+                  Load Sample Bharat Pitch ⚡
+                </button>
+              </div>
+
               <form onSubmit={handleSubmit} className="kp-pitch-form">
                 <div className="kp-form-row">
                   <div className="kp-form-group">
@@ -289,6 +319,7 @@ export function PitchModal({ isOpen, onClose }) {
                   </div>
                 </div>
               </form>
+              </>
             )}
           </motion.div>
         </div>

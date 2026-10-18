@@ -38,7 +38,7 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.7, delay, ease: [0.4, 0, 0.2, 1] },
 });
 
-export default function Hero({ onOpenPitch }) {
+export default function Hero({ onOpenPitch, onSelectStartup }) {
   const [statsStarted, setStatsStarted] = useState(false);
   const statsRef = useRef(null);
 
@@ -114,15 +114,27 @@ export default function Hero({ onOpenPitch }) {
               <span className="mockup-title">Pitch Dashboard — Season 1</span>
             </div>
             <div className="mockup-body">
-              <div className="mockup-startup-card">
+              <div
+                className="mockup-startup-card cursor-pointer transition-transform hover:scale-[1.02]"
+                onClick={() => onSelectStartup && onSelectStartup('bharatlearn')}
+                role="button"
+                tabIndex={0}
+                title="Click to view BharatLearn startup dossier"
+              >
                 <div className="startup-avatar-sm">🚀</div>
                 <div className="startup-info-sm">
-                  <h4>TechBharat AI</h4>
-                  <span className="tag-sm">SaaS · Seed Stage</span>
+                  <h4>BharatLearn</h4>
+                  <span className="tag-sm">EdTech · Pre-Seed</span>
                 </div>
-                <div className="startup-status live">● Live</div>
+                <div className="startup-status live">● Spotlight</div>
               </div>
-              <div className="mockup-startup-card">
+              <div
+                className="mockup-startup-card cursor-pointer transition-transform hover:scale-[1.02]"
+                onClick={() => onSelectStartup && onSelectStartup('agroconnect')}
+                role="button"
+                tabIndex={0}
+                title="Click to view AgroConnect startup dossier"
+              >
                 <div className="startup-avatar-sm">🌾</div>
                 <div className="startup-info-sm">
                   <h4>AgroConnect</h4>

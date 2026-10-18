@@ -57,7 +57,10 @@ export default function App() {
           <FintechView onOpenPitch={() => setPitchOpen(true)} />
         ) : (
           <div id="pitch-platform">
-            <Hero onOpenPitch={() => setPitchOpen(true)} />
+            <Hero
+              onOpenPitch={() => setPitchOpen(true)}
+              onSelectStartup={(sId) => setUrlState({ startup: sId })}
+            />
             <TrustBar />
             <About />
             <HowItWorks />
