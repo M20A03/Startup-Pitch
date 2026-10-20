@@ -70,6 +70,41 @@ export default function Navbar({ currentView, onToggleView, onOpenPitch, onOpenS
     if (msg) msg.textContent = `Switched to ${next} mode`;
   };
 
+  const handleDesktopLinkClick = (e, link) => {
+    if (link.id === 'pitch-platform') {
+      e.preventDefault();
+      onToggleView('pitch');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    const el = document.getElementById(link.id);
+    if (el) {
+      e.preventDefault();
+      const navOffset = 70;
+      const elPos = el.getBoundingClientRect().top + window.pageYOffset - navOffset;
+      window.scrollTo({ top: elPos, behavior: 'smooth' });
+    }
+  };
+
+  const handleMobileLinkClick = (e, link) => {
+    e.preventDefault();
+    if (link.id === 'pitch-platform') {
+      onToggleView('pitch');
+      setMenuOpen(false);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    setMenuOpen(false);
+    setTimeout(() => {
+      const el = document.getElementById(link.id);
+      if (el) {
+        const navOffset = 70;
+        const elPos = el.getBoundingClientRect().top + window.pageYOffset - navOffset;
+        window.scrollTo({ top: elPos, behavior: 'smooth' });
+      }
+    }, 120);
+  };
+
   return (
     <>
       <motion.nav
@@ -81,7 +116,19 @@ export default function Navbar({ currentView, onToggleView, onOpenPitch, onOpenS
       >
         <div className="nav-container">
           <div className="nav-brand-group">
-            <a href="#hero" className="nav-logo" aria-label="Karo Pitch Homepage">
+            <a
+              href="#hero"
+              className="nav-logo"
+              aria-label="Karo Pitch Homepage"
+              onClick={(e) => {
+                e.preventDefault();
+                if (currentView !== 'pitch') {
+                  onToggleView('pitch');
+                }
+                setMenuOpen(false);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+            >
               <span className="logo-karo">karo</span>
               <span className="logo-pitch">pitch</span>
             </a>
@@ -113,11 +160,7 @@ export default function Navbar({ currentView, onToggleView, onOpenPitch, onOpenS
                 <a
                   href={l.href}
                   className={activeSection === l.id ? 'active' : ''}
-                  onClick={() => {
-                    if (l.id === 'pitch-platform') {
-                      onToggleView('pitch');
-                    }
-                  }}
+                  onClick={(e) => handleDesktopLinkClick(e, l)}
                 >
                   {l.label}
                 </a>
@@ -270,12 +313,7 @@ export default function Navbar({ currentView, onToggleView, onOpenPitch, onOpenS
                     <a
                       href={l.href}
                       className={activeSection === l.id ? 'active' : ''}
-                      onClick={() => {
-                        setMenuOpen(false);
-                        if (l.id === 'pitch-platform') {
-                          onToggleView('pitch');
-                        }
-                      }}
+                      onClick={(e) => handleMobileLinkClick(e, l)}
                     >
                       {l.label}
                     </a>
